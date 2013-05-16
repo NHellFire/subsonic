@@ -9,8 +9,14 @@
 <c:choose>
 	<c:when test="${empty model.token}">
 	<script type="text/javascript">
-		window.location.replace('http://www.last.fm/api/auth/?api_key=${model.api_key}&cb=${model.callbackUrl}');
+		window.open('http://www.last.fm/api/auth/?api_key=${model.api_key}&cb=${model.callbackUrl}');
 	</script>
+		<div style="padding: 15px;">
+		<h1>Authorise MusicCabinet to connect to last.fm</h1>
+		<a href="http://www.last.fm/api/auth/?api_key=${model.api_key}&cb=${model.callbackUrl}" target="_blank">Click here</a> if the Last.fm popup didn't open.<br/>
+		<a href="#" onclick="location.reload(true);">Click here</a> to refresh once you have authorised MusicCabinet.
+		</div>
+
 	</c:when>
 	<c:otherwise>
 		<div style="padding: 15px;">
@@ -21,6 +27,7 @@
 			<input type="hidden" name="sessionKey" value="${model.sessionKey}"/>
 			<input type="submit" value="OK"/>
 		</form>
+		</div>
 	</c:otherwise>
 </c:choose>
 
